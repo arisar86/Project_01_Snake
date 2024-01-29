@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: black;
+}
+
+#board {
+  background-color: black;
+  border: 20px solid greenyellow;
+  height: 600px;
+  width: 800px;
+  position: relative;
+}
+
+#snake {
+  background-color: greenyellow;
+  position: absolute;
+}
