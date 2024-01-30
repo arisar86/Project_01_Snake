@@ -35,7 +35,7 @@ Milestone 1: Snake is moving by itself and player can control direction
 
 - moveConstant()
 
-[] player controls direction
+[x] player controls direction
 
 - detect pressing arrow keys
 - moveLeft()
@@ -45,16 +45,24 @@ Milestone 1: Snake is moving by itself and player can control direction
 
 Milestone 2: Food is randomly popping up on the board
 
-[] Food Class
+[x] Food Class
 
 - positionX
 - positionY
 - width
 - height
 
-[] make food pixels appear on the board on random location []
+[x] make food pixels appear on the board on random location
 
-Milestone 3: Snake is growing by eating and moves faster
+Milestone 3: Snake (is growing by eating and) moves faster
+
+[] event on collision with food
+
+- detect collision
+- food re-appears on new position on board
+- getting a point per eaten food
+- snake moves faster
+
 Milestone 4: Game over on collision with own body and/or edge
 Milestone 5: Gameover screen + restart button
 Milestone 6 (Bonus): display current/total record and gameover screen
