@@ -1,3 +1,7 @@
+//global elements
+let score = 0;
+let boardElement;
+
 class Snake {
   constructor() {
     this.positionX = 400;
@@ -7,7 +11,7 @@ class Snake {
     this.step = 20; //distance snake moves per step
     this.createDomElement();
     this.setUpEventListeners();
-    //this.moveConstant();
+    this.displayScore();
   }
 
   //create the DOM Element
@@ -42,18 +46,12 @@ class Snake {
     });
   }
 
-  // movement of the snake
-
-  /*moveConstant() {
-    this.interval = setInterval(() => {
-      this.updatePosition();
-    }, 20);
-  }*/
-
+  //collision detection
   updatePosition() {
     let div = document.getElementById("snake");
     div.style.left = this.positionX + "px";
     div.style.bottom = this.positionY + "px";
+    //collision with food
     if (
       snake.positionX < food.positionX + food.width &&
       snake.positionX + snake.width > food.positionX &&
@@ -62,8 +60,23 @@ class Snake {
     ) {
       console.log("yummy");
       food.reposition();
+      this.updateScore();
+    }
+    //collision with board
+    else if (
+      snake.positionX < 20 ||
+      snake.positionX + snake.width > boardElement.offsetWidth - 40 ||
+      snake.positionY < 20 ||
+      snake.positionY + snake.height > boardElement.offsetHeight + 20
+    ) {
+      this.resetScore(); //reseting score to 0
+      this.positionX = 400; //reseting position of snake
+      this.positionY = 300;
+      this.step = 0;
     }
   }
+
+  // movement of the snake
 
   moveLeft() {
     clearInterval(this.interval);
@@ -97,6 +110,25 @@ class Snake {
       this.positionY += this.step;
       this.updatePosition();
     }, 1000);
+  }
+
+  //scoring points
+
+  displayScore() {
+    let scoreElement = document.getElementById("score");
+    scoreElement.textContent = "Score: " + score;
+  }
+
+  updateScore() {
+    let scoreElement = document.getElementById("score");
+    score++;
+    scoreElement.textContent = "Score: " + score;
+  }
+
+  resetScore() {
+    let scoreElement = document.getElementById("score");
+    score = 0;
+    scoreElement.textContent = "Score: " + score;
   }
 }
 
@@ -137,5 +169,6 @@ class Food {
   }
 }
 
+boardElement = document.getElementById("board");
 const snake = new Snake();
 const food = new Food();

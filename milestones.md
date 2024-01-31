@@ -58,9 +58,9 @@ Milestone 3: Snake (is growing by eating and) moves faster
 
 [] event on collision with food
 
-- detect collision
-- food re-appears on new position on board
-- getting a point per eaten food
+- detect collision [x]
+- food re-appears on new position on board [x]
+- getting a point per eaten food [x]
 - snake moves faster
 
 Milestone 4: Game over on collision with own body and/or edge

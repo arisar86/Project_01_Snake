@@ -28,3 +28,15 @@ body {
   background-color: greenyellow;
   position: absolute;
 }
+
+#score {
+  background-color: black;
+  font-family: fantasy;
+  font-size: large;
+  color: greenyellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 2%;
+}
