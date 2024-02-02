@@ -56,13 +56,12 @@ Milestone 2: Food is randomly popping up on the board
 
 Milestone 3: Snake (is growing by eating and) moves faster
 
-[] event on collision with food
+[x] event on collision with food
 
 - detect collision [x]
 - food re-appears on new position on board [x]
 - getting a point per eaten food [x]
-- snake moves faster
+- snake moves faster [x]
 
-Milestone 4: Game over on collision with own body and/or edge
-Milestone 5: Gameover screen + restart button
-Milestone 6 (Bonus): display current/total record and gameover screen
+Milestone 4: restart button
+Milestone 5 (Bonus): display current/total record and gameover screen
