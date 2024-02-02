@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
 #background {
@@ -16,7 +17,7 @@ body {
   border: 20px solid greenyellow;
   height: 600px;
   width: 800px;
-  position: relative;
+  position: absolute;
 }
 
 #snake {

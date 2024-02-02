@@ -9,9 +9,11 @@ class Snake {
     this.width = 20;
     this.height = 20;
     this.step = 20; //distance snake moves per step
+    this.previousDuration = 500;
     this.createDomElement();
     this.setUpEventListeners();
     this.displayScore();
+    this.currentDirection = null;
   }
 
   //create the DOM Element
@@ -32,20 +34,21 @@ class Snake {
   }
 
   //event listeners
+
+  //moving the snake
   setUpEventListeners() {
     document.addEventListener("keydown", (e) => {
       if (e.code === "ArrowLeft") {
-        this.moveLeft();
+        this.move("left");
       } else if (e.code === "ArrowRight") {
-        this.moveRight();
+        this.move("right");
       } else if (e.code === "ArrowDown") {
-        this.moveDown();
+        this.move("down");
       } else if (e.code === "ArrowUp") {
-        this.moveUp();
+        this.move("up");
       }
     });
   }
-
   //collision detection
   updatePosition() {
     let div = document.getElementById("snake");
@@ -61,55 +64,49 @@ class Snake {
       console.log("yummy");
       food.reposition();
       this.updateScore();
+      this.previousDuration -= 50; // increase speed after scoring
     }
     //collision with board
     else if (
-      snake.positionX < 20 ||
-      snake.positionX + snake.width > boardElement.offsetWidth - 40 ||
-      snake.positionY < 20 ||
-      snake.positionY + snake.height > boardElement.offsetHeight + 20
+      snake.positionX < -10 ||
+      snake.positionX >= 790 ||
+      snake.positionY < -10 ||
+      snake.positionY >= 590
     ) {
       this.resetScore(); //reseting score to 0
       this.positionX = 400; //reseting position of snake
       this.positionY = 300;
-      this.step = 0;
+      this.step = 20;
+      this.currentDirection = null;
+      this.previousDuration = 500;
     }
   }
 
   // movement of the snake
 
-  moveLeft() {
+  move(direction) {
     clearInterval(this.interval);
+    console.log(this.previousDuration);
+    this.currentDirection = direction;
     this.interval = setInterval(() => {
-      this.positionX -= this.step;
+      switch (this.currentDirection) {
+        case "left":
+          this.positionX -= this.step;
+          break;
+        case "right":
+          this.positionX += this.step;
+          break;
+        case "down":
+          this.positionY -= this.step;
+          break;
+        case "up":
+          this.positionY += this.step;
+          break;
+        default:
+          break;
+      }
       this.updatePosition();
-    }, 1000);
-  }
-
-  moveRight() {
-    clearInterval(this.interval);
-
-    this.interval = setInterval(() => {
-      this.positionX += this.step;
-      this.updatePosition();
-    }, 1000);
-  }
-
-  moveDown() {
-    clearInterval(this.interval);
-    this.interval = setInterval(() => {
-      this.positionY -= this.step;
-      this.updatePosition();
-    }, 1000);
-  }
-
-  moveUp() {
-    clearInterval(this.interval);
-
-    this.interval = setInterval(() => {
-      this.positionY += this.step;
-      this.updatePosition();
-    }, 1000);
+    }, Math.max(this.previousDuration, 50));
   }
 
   //scoring points
